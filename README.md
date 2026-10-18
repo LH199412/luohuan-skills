@@ -3,6 +3,7 @@
 本仓库用于公开发布 Luohuan 的 Agent Skills。当前包含：
 
 - [`luohuan-knowledge-pipeline`](./luohuan-knowledge-pipeline/) — Knowledge Pipeline（知识生产流水线）
+- [`ai-token-cost-forensics`](./ai-token-cost-forensics/) — Luohuan AI Token Cost Forensics（AI Token 成本取证专家）
 
 ## luohuan-knowledge-pipeline
 
@@ -31,3 +32,25 @@
 ### 免责声明
 
 本技能描述的是方法论与工程约束，不含任何密钥、令牌或私有数据；外部内容一律视为不可信输入。
+
+## ai-token-cost-forensics
+
+- 技术标识：`ai-token-cost-forensics`
+- 展示名称：Luohuan AI Token Cost Forensics（AI Token 成本取证专家）
+- 版本：0.1.0
+- 许可证：[MIT](./ai-token-cost-forensics/LICENSE.md)
+- 形态：面向 Codex 风格本地环境的只读 token 成本诊断 Skill
+
+### 用途
+
+根据本地 `config.toml`、`models.json`、thread SQLite 和 rollout JSONL 证据，辅助定位 token/费用异常的主要消耗来源，并按性价比给出模型档位、推理强度、上下文治理、重试与计量修复建议。完整介绍见 [`ai-token-cost-forensics/README.md`](./ai-token-cost-forensics/README.md)。
+
+### 使用方式
+
+把 `ai-token-cost-forensics/` 放入 Agent 的 skills 目录，或显式调用 `$ai-token-cost-forensics`。在技能目录内运行：
+
+```bash
+python3 scripts/scan_usage.py --codex-home ~/.codex
+```
+
+脚本只做本地只读诊断，不上传数据、不修改配置或数据库；详细参数、输出与限制见技能目录中的 README。
